@@ -1,0 +1,3 @@
+local UnreliableEvent = {};
+
+return UnreliableEvent;
