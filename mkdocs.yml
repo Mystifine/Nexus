@@ -1,0 +1,31 @@
+site_name: Nexus
+site_description: A lightweight Roblox networking library for organized remote communication.
+site_author: mystifine
+repo_url: https://github.com/Mystifine/Nexus
+markdown_extensions:
+  - admonition
+theme:
+  name: material
+  palette:
+    scheme: default
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.tabs
+    - content.code.annotate
+    - header.autohide
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - API Reference:
+      - Nexus: api/nexus.md
+      - Event: api/event.md
+      - Async: api/async.md
+      - UnreliableEvent: api/unreliable-event.md
+  - Development: development.md
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Mystifine/Nexus
+  edit_uri: edit/main/docs

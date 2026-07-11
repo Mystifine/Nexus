@@ -6,3 +6,9 @@
 /*.rbxl.lock
 
 sourcemap.json
+
+# MkDocs generated site
+/site/
+
+# Python virtual environment
+/.venv/

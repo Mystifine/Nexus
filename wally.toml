@@ -1,5 +1,15 @@
 [package]
 name = "mystifine/nexus"
-version = "0.1.0"
+version = "0.1.1"
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
+
+exclude = ["**"]
+
+include = [
+  "src",
+  "src/**",
+  "default.project.json",
+  "README.md",
+  "wally.toml",
+]
