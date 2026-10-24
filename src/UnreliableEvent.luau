@@ -16,6 +16,9 @@ local RunService = game:GetService("RunService");
 local UnreliableEvent = {};
 UnreliableEvent.__index = UnreliableEvent;
 
+local IS_SERVER = RunService:IsServer();
+local IS_CLIENT = RunService:IsClient();
+
 local unreliableRemoteEvent = nil;
 
 function UnreliableEvent.getUnreliableRemoteEvent()
@@ -27,7 +30,7 @@ function UnreliableEvent.getUnreliableRemoteEvent()
 end
 
 function UnreliableEvent:OnServerEvent(callback: (player : Player, ...any) -> nil)
-  if RunService:IsClient() then
+  if IS_CLIENT then
     warn("[Nexus]: You can only call OnServerEvent on the server!");
     return;
   end
@@ -35,7 +38,7 @@ function UnreliableEvent:OnServerEvent(callback: (player : Player, ...any) -> ni
 end
 
 function UnreliableEvent:OnClientEvent(callback : (...any) -> nil)
-  if RunService:IsServer() then
+  if IS_SERVER then
     warn("[Nexus]: You can only call OnClientEvent on the client!");
     return;
   end
@@ -43,7 +46,7 @@ function UnreliableEvent:OnClientEvent(callback : (...any) -> nil)
 end
 
 function UnreliableEvent:FireServer(...)
-  if RunService:IsServer() then
+  if IS_SERVER then
     warn("[Nexus]: You can only call FireServer on the client!");
     return;
   end
@@ -52,7 +55,7 @@ function UnreliableEvent:FireServer(...)
 end
 
 function UnreliableEvent:FireClient(player : Player, ...)
-  if RunService:IsClient() then
+  if IS_CLIENT then
     warn("[Nexus]: You can only call FireClient on the server!");
     return;
   end
@@ -61,7 +64,7 @@ function UnreliableEvent:FireClient(player : Player, ...)
 end
 
 function UnreliableEvent:FireAllClientsExcept(ignorePlayer : Player, ...)
-  if RunService:IsClient() then
+  if IS_CLIENT then
     warn("[Nexus]: You can only call FireAllClientsExcept on the server!");
     return;
   end
@@ -74,7 +77,7 @@ function UnreliableEvent:FireAllClientsExcept(ignorePlayer : Player, ...)
 end
 
 function UnreliableEvent:FireAllClients(...)
-  if RunService:IsClient() then
+  if IS_CLIENT then
     warn("[Nexus]: You can only call FireAllClients on the server!");
     return;
   end

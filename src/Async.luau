@@ -15,6 +15,8 @@ local RunService = game:GetService("RunService");
 local Async = {};
 Async.__index = Async;
 
+local IS_SERVER = RunService:IsServer();
+local IS_CLIENT = RunService:IsClient();
 local remoteFunction = nil;
 
 function Async.getRemoteFunction()
@@ -26,7 +28,7 @@ function Async.getRemoteFunction()
 end
 
 function Async:OnServerInvoke(callback: (player : Player, ...any) -> any)
-  if RunService:IsClient() then
+  if IS_CLIENT then
     warn("[Nexus]: You can only call OnServerInvoke on the server!");
     return;
   end
@@ -34,7 +36,7 @@ function Async:OnServerInvoke(callback: (player : Player, ...any) -> any)
 end
 
 function Async:OnClientInvoke(callback : (...any) -> any)
-  if RunService:IsServer() then
+  if IS_SERVER then
     warn("[Nexus]: You can only call OnClientInvoke on the client!");
     return;
   end
@@ -42,7 +44,7 @@ function Async:OnClientInvoke(callback : (...any) -> any)
 end
 
 function Async:InvokeServer(...)
-  if RunService:IsServer() then
+  if IS_SERVER then
     warn("[Nexus]: You can only call InvokeServer on the client!");
     return;
   end
@@ -51,7 +53,7 @@ function Async:InvokeServer(...)
 end
 
 function Async:InvokeClient(player : Player, ...)
-  if RunService:IsClient() then
+  if IS_CLIENT then
     warn("[Nexus]: You can only call InvokeClient on the server!");
     return;
   end

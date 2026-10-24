@@ -17,6 +17,8 @@ local RunService = game:GetService("RunService");
 local Event = {};
 Event.__index = Event;
 
+local IS_SERVER = RunService:IsServer();
+local IS_CLIENT = RunService:IsClient();
 local remoteEvent = nil;
 
 function Event.getRemoteEvent()
@@ -28,7 +30,7 @@ function Event.getRemoteEvent()
 end
 
 function Event:OnServerEvent(callback: (player : Player, ...any) -> nil)
-  if RunService:IsClient() then
+  if IS_CLIENT then
     warn("[Nexus]: You can only call OnServerEvent on the server!");
     return;
   end
@@ -36,7 +38,7 @@ function Event:OnServerEvent(callback: (player : Player, ...any) -> nil)
 end
 
 function Event:OnClientEvent(callback : (...any) -> nil)
-  if RunService:IsServer() then
+  if IS_SERVER then
     warn("[Nexus]: You can only call OnClientEvent on the client!");
     return;
   end
@@ -44,7 +46,7 @@ function Event:OnClientEvent(callback : (...any) -> nil)
 end
 
 function Event:FireServer(...)
-  if RunService:IsServer() then
+  if IS_SERVER then
     warn("[Nexus]: You can only call FireServer on the client!");
     return;
   end
@@ -53,7 +55,7 @@ function Event:FireServer(...)
 end
 
 function Event:FireClient(player : Player, ...)
-  if RunService:IsClient() then
+  if IS_CLIENT then
     warn("[Nexus]: You can only call FireClient on the server!");
     return;
   end
@@ -62,7 +64,7 @@ function Event:FireClient(player : Player, ...)
 end
 
 function Event:FireAllClientsExcept(ignorePlayer : Player, ...)
-  if RunService:IsClient() then
+  if IS_CLIENT then
     warn("[Nexus]: You can only call FireAllClientsExcept on the server!");
     return;
   end
@@ -75,7 +77,7 @@ function Event:FireAllClientsExcept(ignorePlayer : Player, ...)
 end
 
 function Event:FireAllClients(...)
-  if RunService:IsClient() then
+  if IS_CLIENT then
     warn("[Nexus]: You can only call FireAllClients on the server!");
     return;
   end

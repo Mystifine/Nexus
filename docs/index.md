@@ -1,4 +1,5 @@
 # Nexus
+**Version:** 0.1.4
 
 Nexus is a lightweight Roblox networking module that simplifies remote communication between the server and clients.
 
